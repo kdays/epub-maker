@@ -1,0 +1,1 @@
+module.exports = angular.module('baka.setting', []).controller('SettingCtrl', require("./settingCtrl"))

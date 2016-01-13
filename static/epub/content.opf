@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="BookId" opf:scheme="UUID">{uuid}</dc:identifier>
+        <dc:title>{name}</dc:title>
+        <dc:creator opf:file-as="{author}" opf:role="aut">{author}</dc:creator>
+        <dc:language>zh</dc:language>
+        <dc:source>{source}</dc:source>
+        <dc:description>{about}</dc:description>
+        <dc:date>{createTime}</dc:date>
+        <dc:publisher>{publisher}</dc:publisher>
+        {extra_meta}
+        
+        <meta content="cover-image" name="cover" />
+    </metadata>
+    
+    <manifest>
+        <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+        <item href="html/Cover.html" id="Cover.html" media-type="application/xhtml+xml" />
+        <item href="html/Contents.html" id="Contents.html" media-type="application/xhtml+xml" />
+        <item href="styles/style.css" id="style.css" media-type="text/css" />
+        <item href="attachment/cover.jpg" id="cover-image" media-type="image/jpeg" />
+        
+        {field_item}
+    </manifest>
+    
+    <spine toc="ncx">
+        <itemref idref="Cover.html" />
+        <itemref idref="Contents.html" />
+        
+        {field_spine}
+    </spine>
+    
+    <guide>
+        <reference href="html/Cover.html" title="Cover" type="cover" />
+        <reference href="html/Contents.html" title="Table of Contents" type="toc" />
+    </guide>
+</package>    

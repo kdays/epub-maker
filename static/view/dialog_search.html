@@ -1,0 +1,21 @@
+<md-dialog aria-label="搜索"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>搜索</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">&times;</md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container>
+                    <label>关键字</label>
+                    <input ng-model="searchText" />
+                </md-input-container>
+                
+                <md-button ng-click="submitSearch()" class="md-raised md-primary">搜索</md-button>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

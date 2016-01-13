@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8" />
+    <title>Akari ePub Maker</title>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" />
+
+    <link rel="stylesheet" href="static/app.css" />
+</head>        
+        
+<body ng-app="baka">
+    <div id="app" ng-controller="indexController as p">
+        <div no-select class="titlebar paper-bg-light-black paper-text-white" layout="row" layout-align="start center">
+            <div layout="row" id="appLogo" layout-align="start left"><p>&nbsp;&nbsp;&nbsp;&nbsp;Akari Epub</p></div>
+
+            <div layout="row" style="margin-left: 30px;">
+                <div class="titlebar-button" ng-class="{active:p.tabName=='factory'}" ng-click="p.switchTab('factory')">
+                    <p>书籍</p>
+                </div>
+                <div class="titlebar-button" ng-class="{active:p.tabName=='settings'}" ng-click="p.switchTab('settings')">
+                    <p>设置</p>
+                </div>
+            </div>
+
+            <div flex></div>
+
+            <!--div layout="row" layout-align="start center">
+                <a close-button class="titlebar-button">&times;</a>
+            </div-->
+        </div>    
+        
+        <div ng-show="p.tabName=='factory'" ng-include="'static/view/tab_factory.html'"></div>
+        <div ng-show="p.tabName=='settings'" ng-include="'static/view/tab_setting.html'"></div>
+    </div>
+    
+    <div id="safeArea" style="display: none"></div>
+        
+    <script>require("./lib/app.js")</script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+    <script src="static/bundle.js"></script>
+</body>

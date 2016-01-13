@@ -1,0 +1,163 @@
+
+html {
+    height: 604px;
+    background: transparent;
+}
+body {
+    height: inherit;
+    overflow: auto;
+    background: transparent;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+pre {
+    flex: 1;
+    margin: 0;
+    white-space: pre-wrap;
+    text-rendering: optimizeLegibility;
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+}
+a.link {
+    color: #3f51b5;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+a.link:hover {
+    color: #333333;
+    border-bottom-color: #999;
+}
+a.link:active {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: none;
+}
+::-webkit-scrollbar-thumb {
+    background: #b2b2b2;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b2b2b2;
+}
+*[ng-click] {
+    outline: none;
+}
+#app {
+    margin: auto;
+    width: calc(100% - 2px * 2);
+    height: 600px;
+    margin-top: 2px;
+    background: #f5f5f5;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.7);
+}
+
+
+.titlebar {
+    width: 100%;
+}
+.titlebar >div {
+    height: inherit;
+    font-weight: 600;
+}
+.titlebar-button {
+    display: inherit;
+    position: relative;
+    height: 100%;
+    padding: 0 13px;
+    color: #989898;
+    cursor: pointer;
+}
+.titlebar-button::after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    bottom: 1px;
+    width: calc(100% - 2px);
+    height: 0px;
+    background: #f5f5f5;
+}
+.titlebar-button.active,
+.titlebar-button:hover {
+    color: #f5f5f5;
+    background: rgba(0,0,0,0.15);
+}
+.titlebar-button.active::after,
+.titlebar-button:hover::after {
+    height: 3px;
+}
+.titlebar-button.active md-icon,
+.titlebar-button:hover md-icon {
+    color: #f5f5f5;
+}
+.titlebar-button md-icon {
+    color: #989898;
+}
+.titlebar-button p {
+    padding-left: 5px;
+}
+
+.cur {
+    color: #6699cc;
+    cursor: pointer;
+}
+
+.titleArea {
+    float: left;
+}
+
+.buttonArea {
+    float:right;
+    margin-top: 40px;
+    margin-right: 40px;
+}
+
+.buttonArea a:after {
+    content: ' / ';
+    color: #666;
+}
+
+.buttonArea a:last-child:after {
+    content: ''
+}
+
+.author span {
+    margin-right: 10px;
+}
+
+.titleArea img{
+    float: left;
+    margin-right: 5px;
+}
+
+.infoWindow {
+    float: left;
+}
+
+.cur.addImage {
+
+}
+
+.titleBar {
+    padding: 15px 15px;
+    margin: 10px 15px;
+    background: #eee;
+    border-radius: 10px;
+}
+
+.titleBar a {
+    margin-left: 10px;
+}
+
+.gray {
+    color: #888;
+}

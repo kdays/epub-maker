@@ -1,0 +1,23 @@
+<!-- ng-controller="bookListCtrl" -->
+<md-content layout="column" ng-cloak>
+
+    <div ng-repeat="item in bookList.lists" style="padding-top: 10px; padding-bottom: 10px; border-bottom: 1px #eee dashed;">
+        <div class="titleArea">
+            <img src="{{item.cover}}" width="90" />
+
+            <div class="infoWindow">
+                <h4>{{item.name}}</h4>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+            
+        <div class="buttonArea">
+            <a class="cur" ng-click="bookList.toChapters(item.id)">章节列表</a>
+            <a class="cur danger" ng-click="bookList.remove(item.id)">删除</a>
+        </div>
+    </div>
+
+    <p>
+        <md-button ng-click="bookList.back()">Back</md-button>
+    </p>
+</md-content>    

@@ -1,0 +1,23 @@
+<!-- ng-controller="chapterListCtrl" -->
+<md-content layout="column" ng-cloak>
+
+    <p>章节列表: {{chapterList.bookInfo.name}}</p>
+    <div>
+        <md-button ng-click="chapterList.back()">返回</md-button>
+        <md-button ng-click="chapterList.toEditInfo()">编辑整体信息</md-button>
+        <md-button ng-click="chapterList.addChapter()">添加章节</md-button>
+        <md-button ng-click="chapterList.pack()">打包EPUB</md-button>
+    </div>
+    
+    <md-list>
+        <md-list-item  ng-repeat="item in chapterList.bookInfo.chapters">
+            <p>
+                {{item.name}}
+                
+                <a class="cur" ng-click="chapterList.editChapter(item.id)">编辑</a>
+                <a class="cur" ng-click="chapterList.removeChapter(item.id)">删除</a>
+            </p>
+        </md-list-item>
+    </md-list>
+    
+</md-content>    

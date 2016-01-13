@@ -1,0 +1,20 @@
+{
+  "name": "AkariEPubMaker",
+  "main": "main.js",
+  "scripts": {
+    "watch:js": "watchify src/modules/entry.js -o static/bundle.js",
+    "package": "electron-packager ./ epubMaker --platform=darwin,win32 --arch=x64 --version=0.30.4 --overwrite --out=../ --ignore=./src"
+  },
+  "devDependencies": {
+    "watchify": "latest"
+  },
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "jszip": "^2.5.0",
+    "q": "^1.4.1",
+    "request": "latest",
+    "rimraf": "latest",
+    "xml2js": "^0.4.15",
+    "zip-stream": "^0.8.0"
+  }
+}

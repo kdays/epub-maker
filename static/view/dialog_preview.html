@@ -1,0 +1,27 @@
+<style>
+    .p-content .illust {
+        max-width: 600px;
+    }
+    
+    .p-content > div{
+        border: 1px #ccc solid;
+        width: 700px;
+        height: 400px;
+        overflow: auto;
+    }
+</style>
+
+<md-dialog aria-label="内容预览"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>预览</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="closeDialog()">&times;</md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="p-content">
+            <div class="md-dialog-content" ng-bind-html="content | to_trusted"></div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

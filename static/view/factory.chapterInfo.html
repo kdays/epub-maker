@@ -1,0 +1,51 @@
+<!-- ng-controller="chapterListCtrl" -->
+<md-content layout="column" ng-cloak>
+    <p>章节编辑: {{chapterInfo.bookInfo.name}}</p>
+
+
+    <div layout layout-sm="column">
+
+
+        <md-input-container>
+            <label>章节名</label>
+            <input ng-model="chapterInfo.chapterInfo.name" />
+        </md-input-container>
+
+        <md-input-container>
+            <label>排序</label>
+            <input ng-model="chapterInfo.chapterInfo.rank" />
+        </md-input-container>
+
+    </div>
+
+
+    <style>
+        #editor-action {
+            background: #eee;
+            padding: 8px 15px;
+        }
+
+        #editor-action a {
+            margin-right: 10px;
+        }
+    </style>
+    <div id="editor-action">
+        <a ng-click="chapterInfo.addImage()" class="cur addImage">添加图片</a>
+        <a ng-click="chapterInfo.findContent()" class="cur findText">查找文本</a>
+
+
+        <a ng-click="chapterInfo.clearTextSpace()" class="cur clearTextSpace">清理文字空行</a>
+        <a ng-click="chapterInfo.removeFirstTwoSpace()" class="cur removeTwoSpace">删除头2格</a>
+        <a ng-click="chapterInfo.addFirstTwoSpace()" class="cur addTwoSpace">添加头2格</a>
+    </div>
+
+    <div id="editor-content">
+        <textarea id="editor" style="line-height: 16px; font-size: 15px; width: 95%; height:190px;" my-text="" ng-model="chapterInfo.content"></textarea>
+    </div>
+    
+    <div style="padding: 10px;">
+        <md-button class="md-raised md-primary" ng-click="chapterInfo.save()">提交</md-button>
+        <md-button ng-click="chapterInfo.back()">返回</md-button>
+        <md-button ng-click="chapterInfo.preview()">预览</md-button>
+    </div>
+</md-content>    

@@ -1,0 +1,32 @@
+<md-content>
+    <md-whiteframe ng-controller="SettingCtrl as settings">
+    
+        <md-input-container>
+            <label>操作者</label>
+            <input ng-model="settings.operName" />
+        </md-input-container>
+
+        <div>
+            <label>数据保存文件夹</label>
+            <span>{{settings.bookRuntimePath}}</span>
+            
+            <button ng-click="settings.selectFolder('bookRuntimePath')">选择文件夹</button>
+        </div>    
+        
+        <div>
+            <label>打包缓存文件夹</label>
+            <span>{{settings.tmpDir}}</span>
+
+            <button ng-click="settings.selectFolder('tmpDir')">选择文件夹</button>
+        </div>
+        
+        <md-button ng-click="settings.save()" class="md-raised md-primary">保存</md-button>
+
+        <!--p>
+            <md-button class="md-raised" aria-label="debug"  ng-click="settings.openDevTools()">功能调试</md-button>
+        </p-->
+
+    </md-whiteframe>
+    
+    
+</md-content>

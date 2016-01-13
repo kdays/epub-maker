@@ -1,0 +1,6 @@
+<navPoint id="{id}" playOrder="{order}">
+    <navLabel>
+        <text>{title}</text> 
+    </navLabel>
+    <content src="{src}" />            
+</navPoint>
