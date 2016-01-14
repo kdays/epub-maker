@@ -26,7 +26,8 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', function($scop
                 if (result.status == "完成") {
                     $state.go("chapters", {id: result.targetId});
                 }
-                console.log(result);
+                
+                $rootScope.$emit("notify", "Epub读取: " + result.status);
             });
             
         }, ['epub'])

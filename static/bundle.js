@@ -513,7 +513,7 @@ module.exports = function($stateProvider) {
                 if (isNaN(page))    page = 1;
                 var pageSize = 100;
                 
-                var lists = appService.getBookInfo().getIndex(pageSize, (page - 1) * pageSize);
+                var lists = appService.getBookInfo().getIndex(pageSize, (page - 1) * pageSize, true);
                 defer.resolve(lists);
                 
                 return defer.promise;
@@ -572,7 +572,8 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', function($scop
                 if (result.status == "完成") {
                     $state.go("chapters", {id: result.targetId});
                 }
-                console.log(result);
+                
+                $rootScope.$emit("notify", "Epub读取: " + result.status);
             });
             
         }, ['epub'])

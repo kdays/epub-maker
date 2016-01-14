@@ -38,7 +38,7 @@ module.exports = function($stateProvider) {
                 if (isNaN(page))    page = 1;
                 var pageSize = 100;
                 
-                var lists = appService.getBookInfo().getIndex(pageSize, (page - 1) * pageSize);
+                var lists = appService.getBookInfo().getIndex(pageSize, (page - 1) * pageSize, true);
                 defer.resolve(lists);
                 
                 return defer.promise;
