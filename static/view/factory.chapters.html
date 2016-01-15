@@ -12,6 +12,7 @@
     <md-list>
         <md-list-item  ng-repeat="item in chapterList.bookInfo.chapters">
             <p>
+                <input type="text" size="3" ng-blur="chapterList.updateSort(item, $event)" value="{{item.rank}}" />
                 {{item.name}}
                 
                 <a class="cur" ng-click="chapterList.editChapter(item.id)">编辑</a>

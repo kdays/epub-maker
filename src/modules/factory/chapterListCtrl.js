@@ -3,6 +3,18 @@ module.exports = ['appService', '$scope', 'detail', '$state', '$rootScope', func
     
     vm.bookInfo = detail;
     
+    vm.updateSort = function(item, $event) {
+        if ($event.srcElement.value != item.rank) {
+            item.rank = parseInt($event.srcElement.value);
+            if (isNaN(item.rank)) {
+                item.rank = 0;
+            }
+            appService.getBookInfo(detail.id).setChapter(item.id, item.rank, item.name, false);
+            
+            $state.reload();
+        }
+    };
+    
     vm.addChapter = function() {
         $state.go("chapterInfo", {bookid: detail.id, chapterid: 0});
     };

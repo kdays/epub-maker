@@ -217,6 +217,7 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
     var utils = appService.getUtil();
     var q = appService.getBookInfo($stateParams.bookid);
     
+    var oldContent = "";
     if ($stateParams.chapterid > 0) {
         var chapterInfo = null;
         for (var i = 0; i < vm.bookInfo.chapters.length; i++) {
@@ -227,6 +228,7 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
         }
         vm.chapterInfo = chapterInfo;
         vm.content = utils.read_file(q.getTextPath(vm.chapterInfo.textPath));
+        oldContent = vm.content;
     } else {
         vm.chapterInfo = {rank: 0, name: ""};
     }
@@ -244,7 +246,9 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
         
         console.log(vm.content);
         q.setChapter($stateParams.chapterid, vm.chapterInfo.rank, vm.chapterInfo.name, vm.content);
-        alert("保存成功");
+        //alert("保存成功");
+        
+        $rootScope.$emit("notify", "保存成功", 500);
         
         $state.go("chapters", {id: $stateParams.bookid});
     };
@@ -255,6 +259,10 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
                 alert("最多一次性选5张图");
                 return false;
             }*/
+            
+            if (!files || files.length == 0) {
+                return;
+            }
             
             var i;
             for (i = 0; i < files.length; i++) {
@@ -395,7 +403,7 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
     };
 
     vm.clearTextSpace = function() {
-        if (!confirm('你真的要清理空行么,不能反悔哦?')) {
+        if (!confirm('要清理空行? Are you OK?')) {
             return false;
         }
 
@@ -404,8 +412,8 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
 
 
     vm.back = function() {
-        if (vm.content != "") {
-            if (!confirm('你当前编辑器内容非空,如果返回将会丢失编辑哦,确定么?')) {
+        if (vm.content != "" && vm.content != oldContent) {
+            if (!confirm('你有过编辑内容,如果返回将会丢失编辑哦,确定返回么?')) {
                 return false;
             }
         }
@@ -419,6 +427,18 @@ module.exports = ['appService', '$scope', 'detail', '$state', '$rootScope', func
     var vm = this;
     
     vm.bookInfo = detail;
+    
+    vm.updateSort = function(item, $event) {
+        if ($event.srcElement.value != item.rank) {
+            item.rank = parseInt($event.srcElement.value);
+            if (isNaN(item.rank)) {
+                item.rank = 0;
+            }
+            appService.getBookInfo(detail.id).setChapter(item.id, item.rank, item.name, false);
+            
+            $state.reload();
+        }
+    };
     
     vm.addChapter = function() {
         $state.go("chapterInfo", {bookid: detail.id, chapterid: 0});
