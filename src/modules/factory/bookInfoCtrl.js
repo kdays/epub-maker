@@ -12,6 +12,8 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', '$stateParams'
         about: ""
     };
     
+    vm.cacheTime = new Date().getTime();
+    
     if ($stateParams.id > 0) {
         var bq = appService.getBookInfo($stateParams.id);
         vm.bookInfo = bq.getInfo();
@@ -53,6 +55,10 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', '$stateParams'
         
         if ($stateParams.id > 0) {
             bq.updateInfo(vm.bookInfo);
+            if (bq.getImagePath("cover.jpg") != vm.nowSelectedCover) {
+                bq.addImageFile(vm.nowSelectedCover, "cover.jpg");
+            }
+            
             $state.go("chapters", {id: bq.getId()});
         } else {
             var bs = appService.getBookInfo();

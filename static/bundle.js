@@ -103,6 +103,8 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', '$stateParams'
         about: ""
     };
     
+    vm.cacheTime = new Date().getTime();
+    
     if ($stateParams.id > 0) {
         var bq = appService.getBookInfo($stateParams.id);
         vm.bookInfo = bq.getInfo();
@@ -144,6 +146,10 @@ module.exports = ['$scope', 'appService', '$rootScope', '$state', '$stateParams'
         
         if ($stateParams.id > 0) {
             bq.updateInfo(vm.bookInfo);
+            if (bq.getImagePath("cover.jpg") != vm.nowSelectedCover) {
+                bq.addImageFile(vm.nowSelectedCover, "cover.jpg");
+            }
+            
             $state.go("chapters", {id: bq.getId()});
         } else {
             var bs = appService.getBookInfo();
@@ -246,10 +252,46 @@ module.exports = ['appService', '$state', '$stateParams', 'detail', '$scope', '$
         
         console.log(vm.content);
         q.setChapter($stateParams.chapterid, vm.chapterInfo.rank, vm.chapterInfo.name, vm.content);
-        //alert("保存成功");
+        
+        // 打包内容
+        var nowImages = [];
+        var arr = vm.content.split("[[IMG,");
+        if (arr.length > 1) {
+            arr.shift();
+            for (var ii = 0; ii < arr.length; ii++) {
+                var imf = arr[ii].split("]]")[0].split(",")[0];
+                nowImages.push(imf);
+            }
+        }
+        
+        var deletedImages = [];
+        arr = oldContent.split("[[IMG,");
+        var isHas = false;
+        if (arr.length > 1) {
+            arr.shift();
+            for (ii = 0; ii < arr.length; ii++) {
+                imf = arr[ii].split("]]")[0].split(",")[0];
+                
+                isHas = false;
+                for (var i = 0; i < nowImages.length; i++) {
+                    if (nowImages[i] == imf) {
+                        isHas = true;
+                    }
+                }
+                
+                if (!isHas) {
+                    deletedImages.push(imf);
+                }
+            }
+        }
+        
+        if (deletedImages.length > 0) {
+            for (var iii = 0; iii < deletedImages.length; iii++) {
+                appService.getUtil().remove_file(q.getImagePath(deletedImages[iii]));
+            }
+        }
         
         $rootScope.$emit("notify", "保存成功", 500);
-        
         $state.go("chapters", {id: $stateParams.bookid});
     };
     
